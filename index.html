@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle Master</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Toolkit -->
+        <aside class="sidebar glass">
+            <div class="logo">
+                <h1>Doodle</h1>
+            </div>
+            
+            <div class="tool-section">
+                <h3>Nástroje</h3>
+                <button id="btn-brush" class="tool-btn active" title="Štětec">
+                    <ion-icon name="brush-outline"></ion-icon>
+                </button>
+                <button id="btn-eraser" class="tool-btn" title="Guma">
+                    <ion-icon name="trash-outline"></ion-icon> <!-- Using trash/erase metaphor, or create outline -->
+                </button>
+            </div>
+
+            <div class="tool-section">
+                <h3>Velikost</h3>
+                <div class="slider-container">
+                    <input type="range" id="brush-size" min="2" max="50" value="5">
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>Barvy</h3>
+                <div class="color-palette" id="color-palette">
+                    <!-- Colors injected by JS -->
+                </div>
+            </div>
+
+            <div class="tool-section spacer">
+                <h3>Papíry</h3>
+                <div class="papers-list" id="papers-list">
+                    <!-- Paper items injected by JS -->
+                </div>
+                <button id="btn-add-paper" class="add-paper-btn">
+                    <ion-icon name="add-circle"></ion-icon> Nový papír
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Canvas Area -->
+        <main class="canvas-area">
+            <div class="canvas-wrapper glass-panel">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
