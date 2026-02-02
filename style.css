@@ -246,163 +246,74 @@ canvas {
 }
 
 /* --- Responsive Design (Mobile & Tablet) --- */
+/* --- Menu Toggle (Desktop: Hidden) --- */
+.menu-toggle {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* --- Responsive Design (Mobile & Tablet) --- */
 @media (max-width: 900px) {
     body {
-        height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+        height: 100dvh;
     }
 
     .app-container {
-        flex-direction: column;
-        padding: 10px;
-        gap: 10px;
-    }
-
-    .canvas-area {
-        order: 1; /* specific order ensuring canvas is top on mobile */
-        flex: 1;
-        min-height: 0; /* Important! Allows shrinking */
-    }
-
-    .sidebar {
-        order: 2; /* Move to bottom */
-        width: 100%;
-        height: auto;
-        min-height: 140px; /* Ensure enough touch space */
-        max-height: 25vh;
-        
-        flex-direction: row; /* Horizontal flow */
-        align-items: flex-start; /* Align to top of container */
-        
-        overflow-x: auto; /* Scroll horizontally */
-        overflow-y: hidden;
-        
-        padding: 15px;
-        gap: 20px;
-        
-        /* Ensure visual continuity */
-        border-radius: var(--radius-md) var(--radius-md) 0 0; /* Round top only? Maybe just keep standard */
-    }
-
-    /* Adjust Logo - Hide text, maybe simpler or remove */
-    .logo {
-        display: none; /* Save space */
-    }
-
-    /* Sections flow horizontally */
-    .tool-section {
-        min-width: max-content;
-        margin-bottom: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .tool-section h3 {
-        text-align: center;
-        font-size: 0.7rem;
-        margin-bottom: 8px;
-    }
-
-    /* Tools Group (Brush/Eraser) */
-    /* Tools Group (Brush/Eraser) - Target specifically */
-    .sidebar > .tool-section:nth-child(2) {
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .tool-btn {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 0;
-        font-size: 1.2rem;
-    }
-    
-    /* Slider */
-    .slider-container {
-        width: 100px;
-        padding: 10px 0;
-    }
-
-    /* Color Palette */
-    .color-palette {
-        grid-template-columns: repeat(5, 1fr); /* Keep dense grid */
-        gap: 6px;
-        width: 160px; /* Fixed width to force grid wrapping */
-        overflow-y: auto;
-        max-height: 80px;
-        padding-right: 5px;
-    }
-    
-    .color-dot {
-        width: 28px;
-        height: 28px;
-    }
-
-    /* Papers List */
-    .spacer { /* The Papers section */
-        margin-top: 0;
-        border-left: 1px solid rgba(0,0,0,0.1);
-        padding-left: 20px;
-        flex-direction: row;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
-    .papers-list {
-        flex-direction: row;
-        min-height: auto;
-        max-width: 150px;
-        overflow-x: auto;
-        gap: 8px;
-    }
-
-    .paper-item {
-        min-width: 100px;
-        padding: 6px;
-    }
-    
-    .paper-preview {
-        width: 10px;
-        height: 10px;
-    }
-
-    .paper-name {
-        font-size: 0.8rem;
-    }
-    
-    .add-paper-btn {
-        width: 48px;
-        height: 48px;
-        margin-top: 0;
         padding: 0;
+        gap: 0;
     }
-    
-    .add-paper-btn span {
-        display: none; /* Hide text "Nový papír", keep icon */
-    }
-    
-    .add-paper-btn ion-icon {
-        font-size: 1.5rem;
-    }
-}
 
-/* Extra small screens (Phones) */
-@media (max-width: 480px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Sidebar becomes a slide-out drawer */
     .sidebar {
-        padding: 10px;
-        gap: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        z-index: 999;
+        margin: 0;
+        border-radius: 0 24px 24px 0;
+        transform: translateX(-110%);
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.85); /* More opaque for readability */
     }
-    
-    .tool-section h3 {
-        display: none; /* Hide labels on very small screens */
+
+    .sidebar.show {
+        transform: translateX(0);
+        box-shadow: 10px 0 50px rgba(0,0,0,0.2);
     }
-    
-    .slider-container {
-        width: 80px;
+
+    .canvas-wrapper {
+        border-radius: 0; /* Full screen canvas */
+        box-shadow: none;
     }
-    
-    .color-palette {
-        width: 140px;
+
+    /* Adjust tools for mobile sidebar vertical layout (keep default) */
+    .logo {
+        display: block; /* Keep logo in drawer */
+        margin-top: 40px; /* Space for if we want close button, or just padding */
     }
 }

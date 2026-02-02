@@ -119,6 +119,18 @@ document.addEventListener('DOMContentLoaded', () => {
             state.brushSize = e.target.value;
         });
 
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuToggle.addEventListener('click', () => {
+             sidebar.classList.toggle('show');
+        });
+
+        // Close sidebar when touching/clicking canvas on mobile
+        canvas.addEventListener('mousedown', () => sidebar.classList.remove('show'));
+        canvas.addEventListener('touchstart', () => sidebar.classList.remove('show'));
+
         btnAddPaper.addEventListener('click', addPaper);
     }
 
